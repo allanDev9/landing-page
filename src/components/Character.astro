@@ -1,0 +1,37 @@
+---
+interface Character {
+	id: number;
+	image: string;
+	name: string;
+	species: string;
+}
+const response = await fetch("https://rickandmortyapi.com/api/character");
+const data = await response.json();
+const characters: Character[] = data.results;
+const countCharacters = characters.length;
+---
+
+<div id="container" class="flex flex-col justify-center items-center m-10">
+	<main class="text-white">
+		<h1 class="text-4xl font-extrabold text-center mb-10">
+			Api Ricki🖨️<span class="block">And Morty</span>
+		</h1>
+		<span class="font-extrabold text-2xl text-yellow-400"
+			>Cantidad de caracteres: {countCharacters}</span
+		>
+		<ul class="grid grid-cols-3 gap-4 mt-5 mb-10">
+			{
+				characters.map((character: Character) => (
+					<li
+						class="text-white font-extrabold hover:text-yellow-300 border-2 border-blue-700 rounded-lg p-4 hover:scale-105 transform transition duration-500 ease-in-out"
+						data-key={character.id}
+					>
+						<img src={character.image} alt={character.name} />
+						<h2>{character.name}</h2>
+						<h3>{character.species}</h3>
+					</li>
+				))
+			}
+		</ul>
+	</main>
+</div>
