@@ -1,0 +1,31 @@
+---
+import "./src/styles/global.css";
+import Navbar from "./Navbar.astro";
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Landing Page</title>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	</head>
+	<body>
+		<Navbar />
+		<div class="text-black ml-50 mr-50">
+			<slot />
+		</div>
+	</body>
+</html>
+
+<style>
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		max-height: 213%;
+		background-color: rgba(50, 205, 232, 0.681);
+		color: black !important;
+	}
+</style>
