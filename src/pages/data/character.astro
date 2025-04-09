@@ -28,7 +28,7 @@ const characters = await fetchingCharater();
                     data-key={char.id}
                     class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 "
                 >
-                    <div>
+                    <div onclick="dialog.showModal()">
                         <img src={char.image} alt={char.name} />
                         <p>{char.name}</p>
                         <div class="text-gray-300 justify-center bg-blue-700 mt-5 rounded-md p-2 cursor-pointer hover:bg-blue-500 transition duration-300 inline-block">
@@ -64,6 +64,14 @@ const characters = await fetchingCharater();
             </div>
         </div>
     </div>
+    <div class="flex justify-center items-center">
+        <dialog id="dialog" class="w-[30%] h-[40vh] text-center">
+            <p>Este es mi dialogo</p>
+            <button class="bg-red-400" onclick="dialog.close()"
+                >Cerrar Modal</button
+            >
+        </dialog>
+    </div>
 </section>
 <script>
     interface CharacterData {
@@ -71,6 +79,16 @@ const characters = await fetchingCharater();
         name: string;
         image: string;
     }
+
+    const dialog = document.querySelector("#dialog") as HTMLDialogElement;
+
+    const openDialog = () => {
+        dialog.showModal();
+    };
+
+    const closeDialog = () => {
+        dialog.close();
+    };
 
     const contenedor = document.getElementById("contenedor-seleccion")!;
 
