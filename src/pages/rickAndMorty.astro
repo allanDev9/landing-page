@@ -2,11 +2,19 @@
 import Character from "./data/character.astro";
 ---
 
-<section title="Api Rick and Morty font-sans">
-    <h1 class="text-green-300 text-3xl font-extrabold font-mono">
-        Api Rick And Morty
-    </h1>
-    <p class="font-mono mt-5 text-gray-300">Elije tu personaje favorito!</p>
+<section title="Api Rick and Morty" class="font-sans">
+    <div class="max-md:ml-[-110px] max-md:text-xl">
+        <h1
+            class="text-green-300 font-extrabold font-sans max-w-screen-lg mx-auto max-md:px-4 px-8 py-6 max-md:mr-50 max-md:whitespace-nowrap"
+        >
+            Api Rick And Morty
+        </h1>
+        <p
+            class="font-mono mt-5 text-gray-300 max-md:ml-[-60px] max-md:text-2xl max-md:whitespace-nowrap"
+        >
+            Elije tu personaje favorito!
+        </p>
+    </div>
     <div>
         <Character />
     </div>
