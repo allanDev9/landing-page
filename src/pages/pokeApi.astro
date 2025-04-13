@@ -95,7 +95,7 @@ const pokemon = await fetchingCharater();
     interface PokemonData {
         id: number;
         name: string;
-        url: string;
+        image: string;
     }
 
     // const dialog = document.querySelector("#dialog") as HTMLDialogElement;
@@ -120,25 +120,25 @@ const pokemon = await fetchingCharater();
 
     //Función para cargar personajes desde el localStorage
     const loadFromLocalStorage = () => {
-        const characterList = JSON.parse(
-            localStorage.getItem("CharacterList") || "[]",
+        const PokemonList = JSON.parse(
+            localStorage.getItem("PokemonList") || "[]",
         );
         contenedor.innerHTML = "";
 
-        if (characterList.length === 0) {
+        if (PokemonList.length === 0) {
             contenedor.innerHTML = `
             <p class='text-black text-2xl text-center mt-15 font-mono'>Añade tu personaje al Carrito</p>
             <img class='carritoSvg' src='/carrito.svg'/>
             `;
         } else {
-            characterList.forEach((poke: PokemonData) => {
+            PokemonList.forEach((poke: PokemonData) => {
                 const nuevo = document.createElement("div");
                 nuevo.className = "border p-2 mb-2 mt-1 rounded bg-white";
                 nuevo.dataset.id = poke.id.toString();
 
                 nuevo.innerHTML = `
                 <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-40"/>
-                <img src="${poke.url}" alt="${poke.name}" class='w-full rounded'/>
+                <img src="${poke.image}" alt="${poke.name}" class='w-full rounded'/>
                 <p class='text-center font-semibold mt-2'>${poke.name}</p>
                 `;
                 contenedor.appendChild(nuevo);
@@ -153,11 +153,11 @@ const pokemon = await fetchingCharater();
         const target = e.target as HTMLElement | null;
 
         if (target && target.classList.contains("btn-agregar")) {
-            const name = target.dataset.name ?? "";
-            const url = target.dataset.img ?? "";
             const id = target.dataset.id ?? "";
+            const name = target.dataset.name ?? "";
+            const image = target.dataset.img ?? "";
 
-            if (!contenedor || !id || !name || !url) return;
+            if (!contenedor || !id || !name || !image) return;
 
             if (contenedor.querySelector(`[data-id="${id}"]`)) return;
 
@@ -167,7 +167,7 @@ const pokemon = await fetchingCharater();
 
             nuevo.innerHTML = `
             <img src='/delete.svg' class="btn-eliminar bg-red-500 text-white rounded-md p-1 mb-2 ml-40"/>
-            <img src="${url}" alt="${name}" class="w-full rounded" />
+            <img src="${image}" alt="${name}" class="w-full rounded" />
             <p class="text-center font-semibold mt-2">${name}</p>
             `;
             contenedor.appendChild(nuevo);
@@ -182,14 +182,11 @@ const pokemon = await fetchingCharater();
             }
 
             //Guardar en el localStorage
-            const characterList = JSON.parse(
-                localStorage.getItem("CharacterList") || "[]",
+            const PokemonList = JSON.parse(
+                localStorage.getItem("PokemonList") || "[]",
             );
-            characterList.push({ id, name, url });
-            localStorage.setItem(
-                "CharacterList",
-                JSON.stringify(characterList),
-            );
+            PokemonList.push({ id, name, image });
+            localStorage.setItem("PokemonList", JSON.stringify(PokemonList));
 
             updateTotal();
         }
@@ -202,16 +199,16 @@ const pokemon = await fetchingCharater();
 
                 contenedor?.removeChild(characterDiv);
 
-                let CharacterList: PokemonData[] = JSON.parse(
-                    localStorage.getItem("CharacterList") || "[]",
+                let PokemonList: PokemonData[] = JSON.parse(
+                    localStorage.getItem("PokemonList") || "[]",
                 );
-                CharacterList = CharacterList.filter(
+                PokemonList = PokemonList.filter(
                     (poke: PokemonData) => poke.id.toString() !== id,
                 );
 
                 localStorage.setItem(
-                    "CharacterList",
-                    JSON.stringify(CharacterList),
+                    "PokemonList",
+                    JSON.stringify(PokemonList),
                 );
                 if (contenedor.children.length === 0) {
                     contenedor.innerHTML = `
