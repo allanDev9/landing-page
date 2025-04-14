@@ -35,21 +35,21 @@ const pokemon = await fetchingCharater();
     <section class="flex flex-row mt-10">
         <div
             title="PokeApi"
-            class="list-none mt-10 pb-10 mr-70 grid grid-cols-2 gap-x-90 gap-y-5"
+            class="list-none mt-10 pb-10 mr-70 grid grid-cols-2 gap-x-90 gap-y-5 max-md:flex max-md:flex-col"
         >
             {
                 pokemon.map((poke: Pokemon) => (
                     <li
                         id="list-pokemon"
                         data-key={poke.id}
-                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 "
+                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 max-md:ml-[-180px] max-md:w-[200px]"
                     >
                         <div onclick="dialog.showModal()">
                             <img src={poke.image} alt={poke.name} />
                             <p>{poke.name}</p>
-                            <div class="text-gray-300 justify-center bg-blue-700 mt-5 rounded-md p-2 cursor-pointer hover:bg-blue-500 transition duration-300 inline-block">
+                            <div class="text-gray-300 justify-center bg-blue-700 mt-5 rounded-md p-2 cursor-pointer hover:bg-blue-500 transition duration-300 inline-block max-md:h-[50px] max-md:ml-[-10px]">
                                 <button
-                                    class="btn-agregar"
+                                    class="btn-agregar max-md:w-[150px] max-md:text-xs max-md:whitespace-nowrap"
                                     data-id={poke.id}
                                     data-name={poke.name}
                                     data-img={poke.image}
@@ -62,10 +62,10 @@ const pokemon = await fetchingCharater();
                 ))
             }
         </div>
-        <div class="mt-10 ml-30 w-[100%] h-[20vh]">
+        <div class="mt-10 ml-30 w-[100%] h-[20vh] max-md:ml-[-260px]">
             <div
                 id="contenedor-seleccion"
-                class="contenedor-seleccion w-full h-[350px] bg-blue-200 border-2 border-dotted p-4 gap-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap"
+                class="contenedor-seleccion w-full h-[350px] bg-blue-200 border-2 border-dotted p-4 gap-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[190px]"
             >
             </div>
             <div class="mt-5">
@@ -133,11 +133,12 @@ const pokemon = await fetchingCharater();
         } else {
             PokemonList.forEach((poke: PokemonData) => {
                 const nuevo = document.createElement("div");
-                nuevo.className = "border p-2 mb-2 mt-1 rounded bg-white";
+                nuevo.className =
+                    "border p-2 mb-2 mt-1 rounded bg-white max-md:ml-[-3px] max-md:w-[161px] max-md:h-[60vh]";
                 nuevo.dataset.id = poke.id.toString();
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-40"/>
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-40 max-md:ml-[110px]"/>
                 <img src="${poke.image}" alt="${poke.name}" class='w-full rounded'/>
                 <p class='text-center font-semibold mt-2'>${poke.name}</p>
                 `;
@@ -162,11 +163,12 @@ const pokemon = await fetchingCharater();
             if (contenedor.querySelector(`[data-id="${id}"]`)) return;
 
             const nuevo = document.createElement("div");
-            nuevo.className = "border p-2 mb-2 mt-1 rounded bg-white";
+            nuevo.className =
+                "border p-2 mb-2 mt-1 rounded bg-white max-md:w-[161px] max-md:h-[60vh]";
             nuevo.dataset.id = id;
 
             nuevo.innerHTML = `
-            <img src='/delete.svg' class="btn-eliminar bg-red-500 text-white rounded-md p-1 mb-2 ml-40"/>
+            <img src='/delete.svg' class="btn-eliminar bg-red-500 text-white rounded-md p-1 mb-2 ml-40 max-md:ml-[110px]"/>
             <img src="${image}" alt="${name}" class="w-full rounded" />
             <p class="text-center font-semibold mt-2">${name}</p>
             `;
