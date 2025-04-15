@@ -16,50 +16,57 @@ const fetchingCharater = async () => {
 const characters = await fetchingCharater();
 ---
 
-<section class="flex flex-row">
+<section
+    class="flex flex-row h-[120vh] max-md:h-[100vh] max-md:flex-col max-md:justify-center max-md:items-center"
+>
     <div
-        title="Api Rick and Morty"
-        class="list-none mt-10 pb-10 mr-70 grid grid-cols-2 gap-x-90 gap-y-5 max-md:flex max-md:flex-col"
+        class="border border-black w-full h-[550px] max-md:w-[95%] max-md:h-[700px] overflow-y-scroll mb-10 bg-black mt-10 rounded-2xl shadow-2xl"
     >
-        {
-            characters.map((char: Character) => (
-                <li
-                    id="list-characters"
-                    data-key={char.id}
-                    class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 max-md:ml-[-180px] max-md:w-[200px]"
-                >
-                    <div onclick="dialog.showModal()">
-                        <img src={char.image} alt={char.name} />
-                        <p>{char.name}</p>
-                        <div class="text-gray-300 justify-center bg-blue-700 mt-5 rounded-md p-2 cursor-pointer hover:bg-blue-500 transition duration-300 inline-block max-md:h-[50px] max-md:ml-[-10px]">
-                            <button
-                                class="btn-agregar max-md:w-[150px] max-md:text-xs max-md:whitespace-nowrap"
-                                data-id={char.id}
-                                data-name={char.name}
-                                data-img={char.image}
-                            >
-                                Agregar Character
-                            </button>
+        <div
+            title="Api Rick and Morty"
+            class="list-none mt-10 pb-10 mr-70 grid grid-cols-1 gap-x-90 gap-y-5 max-md:flex max-md:flex-col p-5"
+        >
+            {
+                characters.map((char: Character) => (
+                    <li
+                        id="list-characters"
+                        data-key={char.id}
+                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 max-md:ml-[100px] ml-5"
+                    >
+                        <div onclick="dialog.showModal()">
+                            <img src={char.image} alt={char.name} />
+                            <p>{char.name}</p>
+                            <div class="text-gray-300 justify-center bg-blue-700 mt-5 rounded-md p-2 cursor-pointer hover:bg-blue-500 transition duration-300 inline-block max-md:h-[50px] max-md:ml-[-10px]">
+                                <button
+                                    class="btn-agregar max-md:w-[150px] max-md:text-xs max-md:whitespace-nowrap"
+                                    data-id={char.id}
+                                    data-name={char.name}
+                                    data-img={char.image}
+                                >
+                                    Agregar Character
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            ))
-        }
+                    </li>
+                ))
+            }
+        </div>
     </div>
     <div
-        class="mt-10 ml-30 w-[100%] h-[20vh] max-md:ml-[-270px] max-md:w-[220px]"
+        class="mt-10 mb-[20px] ml-30 w-[100%] h-[20vh] max-md:ml-[-170px] max-md:w-[220px]"
     >
         <div
             id="contenedor-seleccion"
-            class="contenedor-seleccion w-full h-[350px] bg-blue-200 border-2 border-dotted p-4 gap-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[200px] max-md:overflow-x-scroll"
+            class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[550px] max-md:overflow-x-scroll rounded-2xl max-md:ml-[-80px] max-md:mt-[-20px] max-md:gap-x-5"
         >
         </div>
-        <div class="mt-5">
+        <div class="mt-6 max-md:mt-10 max-md:ml-[-75px] text-start">
             <span
                 id="totalCharacters"
-                class="text-xl font-bold font-mono text-gray-300">Total: 0</span
+                class="text-xl font-bold font-mono text-yellow-300"
+                >Characters: 0</span
             >
-            <div class="bg-blue-600 rounded-md w-[100%] text-center">
+            <div class="bg-blue-600 rounded-xl w-[80%] px-20 py-2 text-center">
                 <button id="pagar" class="p-2 font-bold font-mono">Pagar</button
                 >
             </div>
@@ -97,7 +104,7 @@ const characters = await fetchingCharater();
     const updateTotal = () => {
         const totalElements = document.querySelector("#totalCharacters")!;
         const charactersOnly = contenedor.querySelectorAll("div[data-id]");
-        totalElements.textContent = `Total: ${charactersOnly.length}`;
+        totalElements.textContent = `Characters: ${charactersOnly.length}`;
     };
     updateTotal();
 
@@ -110,18 +117,18 @@ const characters = await fetchingCharater();
 
         if (characterList.length === 0) {
             contenedor.innerHTML = `
-            <p class='text-black text-2xl text-center mt-15 font-mono'>Añade tu personaje al Carrito</p>
-            <img class='carritoSvg' src='/carrito.svg'/>
+            <p class='text-black text-2xl text-center mt-15 font-mono max-md:ml-10'>Añade tu personaje al Carrito</p>
+            <img class='carritoSvg w-24 mx-auto mt-4 relative right-2' src='/carrito.svg'/>
             `;
         } else {
             characterList.forEach((char: CharacterData) => {
                 const nuevo = document.createElement("div");
                 nuevo.className =
-                    "border p-2 mb-2 mt-1 rounded bg-white max-md:ml-[-3px] max-md:w-[161px] max-md:h-[60vh]";
+                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] max-md:ml-[-3px] max-md:w-[270px] max-md:h-[60vh]";
                 nuevo.dataset.id = char.id.toString();
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-40 max-md:ml-[110px]"/>
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 max-md:ml-[210px]"/>
                 <img src="${char.image}" alt="${char.name}" class='w-full rounded'/>
                 <p class='text-center font-semibold mt-2'>${char.name}</p>
                 `;
@@ -147,11 +154,11 @@ const characters = await fetchingCharater();
 
             const nuevo = document.createElement("div");
             nuevo.className =
-                "border p-2 mb-2 mt-1 rounded bg-white max-md:w-[161px] max-md:h-[60vh]";
+                "border p-2 mb-2 mt-1 rounded bg-white h-[800px] max-md:ml-[-3px] max-md:w-[270px] max-md:h-[60vh]";
             nuevo.dataset.id = id;
 
             nuevo.innerHTML = `
-            <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-40 max-md:ml-[110px]"/>
+            <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 max-md:ml-[110px]"/>
             <img src="${image}" alt="${name}" class="w-full rounded" />
             <p class="text-center font-semibold mt-2">${name}</p>
             `;
@@ -200,8 +207,8 @@ const characters = await fetchingCharater();
                 );
                 if (contenedor.children.length === 0) {
                     contenedor.innerHTML = `
-                    <p class='text-black text-2xl text-center mt-15 font-mono'>Añade tu personaje al Carrito</p>
-                    <img class='carritoSvg' src='/carrito.svg'/>
+                    <p class='text-black text-2xl text-center mt-15 font-mono  max-md:ml-10'>Añade tu personaje al Carrito</p>
+                    <img class='carritoSvg w-24 mx-auto mt-4 relative right-2' src='/carrito.svg'/>
                     `;
                 }
                 updateTotal();
@@ -211,6 +218,11 @@ const characters = await fetchingCharater();
 </script>
 <style>
     .contenedor-seleccion {
-        box-shadow: 15px 15px 15px 5px rgba(0, 0, 0, 334.5);
+        box-shadow: 25px 25px 10px rgba(0, 0, 0, 0.333);
+        transition: all 0.5s ease-in-out;
+    }
+    .contenedor-seleccion:hover {
+        transform: translateY(-20px);
+        box-shadow: 35px 35px 20px rgba(0, 0, 0, 0.333);
     }
 </style>

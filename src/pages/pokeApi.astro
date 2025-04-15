@@ -32,62 +32,68 @@ const pokemon = await fetchingCharater();
 ---
 
 <Layout>
-    <section class="flex flex-row mt-10">
+    <section
+        class="flex flex-row h-[120vh] max-md:h-auto max-md:flex-col max-md:items-center max-md:justify-start"
+    >
+        <!-- Lista de Pokémons -->
         <div
-            title="PokeApi"
-            class="list-none mt-10 pb-10 mr-70 grid grid-cols-2 gap-x-90 gap-y-5 max-md:flex max-md:flex-col"
+            class="border border-black w-full h-[550px] overflow-y-scroll mb-10 bg-black mt-10 rounded-2xl shadow-2xl"
         >
-            {
-                pokemon.map((poke: Pokemon) => (
-                    <li
-                        id="list-pokemon"
-                        data-key={poke.id}
-                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 max-md:ml-[-180px] max-md:w-[200px]"
-                    >
-                        <div onclick="dialog.showModal()">
-                            <img src={poke.image} alt={poke.name} />
-                            <p>{poke.name}</p>
-                            <div class="text-gray-300 justify-center bg-blue-700 mt-5 rounded-md p-2 cursor-pointer hover:bg-blue-500 transition duration-300 inline-block max-md:h-[50px] max-md:ml-[-10px]">
-                                <button
-                                    class="btn-agregar max-md:w-[150px] max-md:text-xs max-md:whitespace-nowrap"
-                                    data-id={poke.id}
-                                    data-name={poke.name}
-                                    data-img={poke.image}
-                                >
-                                    Agregar Pokemon
-                                </button>
+            <ul
+                class="mt-10 pb-10 grid grid-cols-1 gap-y-5 px-5 max-md:flex max-md:flex-col items-center"
+            >
+                {
+                    pokemon.map((poke: Pokemon) => (
+                        <li
+                            id="list-pokemon"
+                            data-key={poke.id}
+                            class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300"
+                        >
+                            <div>
+                                <img src={poke.image} alt={poke.name} />
+                                <p class="text-center mt-2">{poke.name}</p>
+                                <div class="text-white bg-blue-700 mt-5 rounded-md p-2 cursor-pointer hover:bg-blue-500 transition duration-300 text-center">
+                                    <button
+                                        class="btn-agregar w-full"
+                                        data-id={poke.id}
+                                        data-name={poke.name}
+                                        data-img={poke.image}
+                                    >
+                                        Agregar Pokémon
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </li>
-                ))
-            }
+                        </li>
+                    ))
+                }
+            </ul>
         </div>
-        <div class="mt-10 ml-30 w-[100%] h-[20vh] max-md:ml-[-260px]">
+
+        <!-- Carrito / Seleccionados -->
+        <div
+            class="mt-10 mb-[20px] ml-30 w-[100%] h-[20vh] max-md:ml-[-170px] max-md:w-[220px]"
+        >
             <div
                 id="contenedor-seleccion"
-                class="contenedor-seleccion w-full h-[350px] bg-blue-200 border-2 border-dotted p-4 gap-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[190px]"
+                class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[550px] max-md:overflow-x-scroll rounded-2xl max-md:ml-[-80px] max-md:mt-[-20px] max-md:gap-x-5"
             >
+                <!-- Contenido dinámico con JS -->
             </div>
-            <div class="mt-5">
+            <div class="mt-5 max-md:mt-10 max-md:ml-[-75px] text-start">
                 <span
                     id="totalCharacters"
-                    class="text-xl font-bold font-mono text-gray-300"
-                    >Total: 0</span
+                    class="text-xl font-bold font-mono text-yellow-300"
                 >
-                <div class="bg-blue-600 rounded-md w-[100%] text-center">
+                    Pokémons: 0
+                </span>
+                <div
+                    class="bg-blue-600 rounded-xl w-[80%] px-20 py-2 text-center"
+                >
                     <button id="pagar" class="p-2 font-bold font-mono"
                         >Pagar</button
                     >
                 </div>
             </div>
-        </div>
-        <div class="flex justify-center items-center">
-            <!-- <dialog id="dialog" class="w-[30%] h-[40vh] text-center">
-                <p>Este es mi dialogo</p>
-                <button class="bg-red-400" onclick="dialog.close()"
-                    >Cerrar Modal</button
-                >
-            </dialog> -->
         </div>
     </section>
 </Layout>
@@ -98,27 +104,14 @@ const pokemon = await fetchingCharater();
         image: string;
     }
 
-    // const dialog = document.querySelector("#dialog") as HTMLDialogElement;
-
-    // const openDialog = () => {
-    //     dialog.showModal();
-    // };
-
-    // const closeDialog = () => {
-    //     dialog.close();
-    // };
-
     const contenedor = document.getElementById("contenedor-seleccion")!;
 
-    // Función para actualizar el total de personajes
     const updateTotal = () => {
         const totalElements = document.querySelector("#totalCharacters")!;
         const charactersOnly = contenedor.querySelectorAll("div[data-id]");
-        totalElements.textContent = `Total: ${charactersOnly.length}`;
+        totalElements.textContent = `Pokémons: ${charactersOnly.length}`;
     };
-    updateTotal();
 
-    //Función para cargar personajes desde el localStorage
     const loadFromLocalStorage = () => {
         const PokemonList = JSON.parse(
             localStorage.getItem("PokemonList") || "[]",
@@ -127,21 +120,21 @@ const pokemon = await fetchingCharater();
 
         if (PokemonList.length === 0) {
             contenedor.innerHTML = `
-            <p class='text-black text-2xl text-center mt-15 font-mono'>Añade tu personaje al Carrito</p>
-            <img class='carritoSvg' src='/carrito.svg'/>
-            `;
+            <p class='text-black text-2xl text-center mt-10 font-mono max-md:ml-10'>Añade tu personaje al carrito</p>
+            <img class='carritoSvg w-24 mx-auto mt-4 relative right-2' src='/carrito.svg'/>
+        `;
         } else {
-            PokemonList.forEach((poke: PokemonData) => {
+            PokemonList.forEach((poke: any) => {
                 const nuevo = document.createElement("div");
                 nuevo.className =
-                    "border p-2 mb-2 mt-1 rounded bg-white max-md:ml-[-3px] max-md:w-[161px] max-md:h-[60vh]";
-                nuevo.dataset.id = poke.id.toString();
+                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] max-md:ml-[-3px] max-md:w-[270px] max-md:h-[60vh]";
+                nuevo.dataset.id = poke.id;
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-40 max-md:ml-[110px]"/>
-                <img src="${poke.image}" alt="${poke.name}" class='w-full rounded'/>
-                <p class='text-center font-semibold mt-2'>${poke.name}</p>
-                `;
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 max-md:ml-[210px] cursor-pointer"/>
+                <img src="${poke.image}" alt="${poke.name}" class="w-full h-[200px] object-contain rounded mt-5" />
+                <p class="text-center font-semibold mt-2">${poke.name}</p>
+            `;
                 contenedor.appendChild(nuevo);
             });
         }
@@ -151,80 +144,75 @@ const pokemon = await fetchingCharater();
     loadFromLocalStorage();
 
     document.body.addEventListener("click", (e) => {
-        const target = e.target as HTMLElement | null;
+        const target = e.target! as HTMLElement;
 
-        if (target && target.classList.contains("btn-agregar")) {
-            const id = target.dataset.id ?? "";
-            const name = target.dataset.name ?? "";
-            const image = target.dataset.img ?? "";
+        if (target.classList.contains("btn-agregar")) {
+            const id = target.dataset.id;
+            const name = target.dataset.name;
+            const image = target.dataset.img;
 
-            if (!contenedor || !id || !name || !image) return;
+            if (!contenedor.querySelector(`[data-id="${id}"]`)) {
+                const nuevo = document.createElement("div");
+                nuevo.className =
+                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] max-md:ml-[-3px] max-md:w-[270px] max-md:h-[60vh]";
+                nuevo.dataset.id = id;
 
-            if (contenedor.querySelector(`[data-id="${id}"]`)) return;
-
-            const nuevo = document.createElement("div");
-            nuevo.className =
-                "border p-2 mb-2 mt-1 rounded bg-white max-md:w-[161px] max-md:h-[60vh]";
-            nuevo.dataset.id = id;
-
-            nuevo.innerHTML = `
-            <img src='/delete.svg' class="btn-eliminar bg-red-500 text-white rounded-md p-1 mb-2 ml-40 max-md:ml-[110px]"/>
-            <img src="${image}" alt="${name}" class="w-full rounded" />
-            <p class="text-center font-semibold mt-2">${name}</p>
+                nuevo.innerHTML = `
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 max-md:ml-[210px] cursor-pointer"/>
+                <img src="${image}" alt="${name}" class="w-full h-[200px] object-contain rounded mt-5" />
+                <p class="text-center font-semibold mt-2">${name}</p>
             `;
-            contenedor.appendChild(nuevo);
+                contenedor.appendChild(nuevo);
 
-            const carritoMsg = contenedor.querySelector("p.text-2xl");
-            const carritoSvg = contenedor.querySelector(".carritoSvg");
-            if (carritoMsg) {
-                carritoMsg.remove();
-            }
-            if (carritoSvg) {
-                carritoSvg.remove();
-            }
+                const msg = contenedor.querySelector("p.text-2xl");
+                const svg = contenedor.querySelector(".carritoSvg");
+                msg?.remove();
+                svg?.remove();
 
-            //Guardar en el localStorage
-            const PokemonList = JSON.parse(
-                localStorage.getItem("PokemonList") || "[]",
-            );
-            PokemonList.push({ id, name, image });
-            localStorage.setItem("PokemonList", JSON.stringify(PokemonList));
-
-            updateTotal();
-        }
-
-        // Manejo del botón de eliminar
-        if (target && target.classList.contains("btn-eliminar")) {
-            const characterDiv = target.closest("div[data-id]") as HTMLElement;
-            if (characterDiv) {
-                const id = characterDiv.dataset.id;
-
-                contenedor?.removeChild(characterDiv);
-
-                let PokemonList: PokemonData[] = JSON.parse(
+                const PokemonList = JSON.parse(
                     localStorage.getItem("PokemonList") || "[]",
                 );
-                PokemonList = PokemonList.filter(
-                    (poke: PokemonData) => poke.id.toString() !== id,
-                );
-
+                PokemonList.push({ id, name, image });
                 localStorage.setItem(
                     "PokemonList",
                     JSON.stringify(PokemonList),
                 );
-                if (contenedor.children.length === 0) {
-                    contenedor.innerHTML = `
-                    <p class='text-black text-2xl text-center mt-15 font-mono'>Añade tu personaje al Carrito</p>
-                    <img class='carritoSvg' src='/carrito.svg'/>
-                    `;
-                }
+
                 updateTotal();
             }
+        }
+
+        if (target.classList.contains("btn-eliminar")) {
+            const div = target.closest("div[data-id]") as HTMLElement;
+            const id = div.dataset.id;
+            div.remove();
+
+            let PokemonList = JSON.parse(
+                localStorage.getItem("PokemonList") || "[]",
+            );
+            PokemonList = PokemonList.filter(
+                (poke: any) => poke.id.toString() !== id,
+            );
+            localStorage.setItem("PokemonList", JSON.stringify(PokemonList));
+
+            if (contenedor.children.length === 0) {
+                contenedor.innerHTML = `
+                <p class='text-black text-2xl text-center mt-10 font-mono max-md:ml-10'>Añade tu personaje al carrito</p>
+                <img class='carritoSvg w-24 mx-auto mt-4 relativo right-2' src='/carrito.svg'/>
+            `;
+            }
+
+            updateTotal();
         }
     });
 </script>
 <style>
     .contenedor-seleccion {
-        box-shadow: 15px 15px 15px 5px rgba(0, 0, 0, 334.5);
+        box-shadow: 25px 25px 10px rgba(0, 0, 0, 0.333);
+        transition: all 0.5s ease-in-out;
+    }
+    .contenedor-seleccion:hover {
+        transform: translateY(-20px);
+        box-shadow: 35px 35px 20px rgba(0, 0, 0, 0.333);
     }
 </style>

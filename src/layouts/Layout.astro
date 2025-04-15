@@ -6,10 +6,9 @@ import Navbar from "./Navbar.astro";
 <!doctype html>
 <html lang="es">
 	<head>
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 		<meta charset="UTF-8" />
 		<title>Landig Page</title>
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	</head>
 	<body>
 		<Navbar />
@@ -28,7 +27,8 @@ import Navbar from "./Navbar.astro";
 	}
 	@media screen and (max-width: 400px) {
 		body {
-			width: 455px;
+			width: 980px;
+			height: 253vh;
 		}
 	}
 </style>
