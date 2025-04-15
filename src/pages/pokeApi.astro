@@ -46,7 +46,7 @@ const pokemon = await fetchingCharater();
             </p>
         </div>
     </header>
-    <section class="grid grid-rows-1 md:grid-cols-1 gap-4">
+    <section class="grid grid-cols-2 gap-4 max-md:grid-cols-1">
         <!-- Lista de Pokémons -->
         <div
             class="border border-black w-full h-[550px] overflow-y-scroll mb-10 bg-black mt-10 rounded-2xl shadow-2xl"
@@ -59,7 +59,7 @@ const pokemon = await fetchingCharater();
                         <li
                             id="list-pokemon"
                             data-key={poke.id}
-                            class="list-none w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 relative left-30"
+                            class="list-none w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 relative left-20"
                         >
                             <div>
                                 <img
