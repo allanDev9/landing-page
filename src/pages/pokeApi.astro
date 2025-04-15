@@ -40,20 +40,20 @@ const pokemon = await fetchingCharater();
                 PokeApi
             </h1>
             <p
-                class="font-mono mt-5 text-gray-300 max-md:ml-[-70px] max-md:text-2xl max-md:whitespace-nowrap"
+                class="font-mono mt-5 text-gray-300 max-md:ml-[-55px] max-md:text-2xl max-md:whitespace-nowrap"
             >
                 Elije tu pokemon favorito!
             </p>
         </div>
     </header>
     <section
-        class="flex flex-row h-[120vh] max-md:h-auto max-md:flex-col max-md:items-center max-md:justify-start"
+        class="flex flex-col h-[120vh] max-md:h-auto max-md:items-center max-md:justify-start"
     >
         <!-- Lista de Pokémons -->
         <div
             class="border border-black w-full h-[550px] overflow-y-scroll mb-10 bg-black mt-10 rounded-2xl shadow-2xl"
         >
-            <ul
+            <div
                 class="mt-10 pb-10 grid grid-cols-1 gap-y-5 px-5 max-md:flex max-md:flex-col items-center"
             >
                 {
@@ -61,7 +61,7 @@ const pokemon = await fetchingCharater();
                         <li
                             id="list-pokemon"
                             data-key={poke.id}
-                            class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300"
+                            class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 relative left-30"
                         >
                             <div>
                                 <img src={poke.image} alt={poke.name} />
@@ -80,7 +80,7 @@ const pokemon = await fetchingCharater();
                         </li>
                     ))
                 }
-            </ul>
+            </div>
         </div>
 
         <!-- Carrito / Seleccionados -->
@@ -89,7 +89,7 @@ const pokemon = await fetchingCharater();
         >
             <div
                 id="contenedor-seleccion"
-                class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[550px] max-md:overflow-x-scroll rounded-2xl max-md:ml-[-80px] max-md:mt-[-20px] max-md:gap-x-5"
+                class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[550px] max-md:overflow-x-scroll rounded-2xl max-md:ml-[-80px] max-md:mt-[-20px] relative gap-x-2"
             >
                 <!-- Contenido dinámico con JS -->
             </div>
@@ -101,7 +101,7 @@ const pokemon = await fetchingCharater();
                     Pokémons: 0
                 </span>
                 <div
-                    class="bg-blue-600 rounded-xl w-[80%] px-20 py-2 text-center"
+                    class="bg-blue-600 rounded-xl w-[70%] px-20 py-2 text-center"
                 >
                     <button id="pagar" class="p-2 font-bold font-mono"
                         >Pagar</button
