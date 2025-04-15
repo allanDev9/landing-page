@@ -46,9 +46,7 @@ const pokemon = await fetchingCharater();
             </p>
         </div>
     </header>
-    <section
-        class="flex flex-col h-[120vh] max-md:h-auto max-md:items-center max-md:justify-start"
-    >
+    <section class="grid grid-rows-1 md:grid-cols-1 gap-4">
         <!-- Lista de Pokémons -->
         <div
             class="border border-black w-full h-[550px] overflow-y-scroll mb-10 bg-black mt-10 rounded-2xl shadow-2xl"
@@ -103,7 +101,9 @@ const pokemon = await fetchingCharater();
                 <div
                     class="bg-blue-600 rounded-xl w-[70%] px-20 py-2 text-center"
                 >
-                    <button id="pagar" class="p-2 font-bold font-mono"
+                    <button
+                        id="pagar"
+                        class="p-2 font-bold font-mono hover:bg-blue-300"
                         >Pagar</button
                     >
                 </div>
