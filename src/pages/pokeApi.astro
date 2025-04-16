@@ -91,7 +91,7 @@ const pokemon = await fetchingCharater();
         >
             <div
                 id="contenedor-seleccion"
-                class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap max-md:w-[550px] max-md:overflow-x-scroll rounded-2xl max-md:ml-[-80px] max-md:mt-[-20px] relative gap-x-2"
+                class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap md:w-[550px] md:h-[50vh] md:overflow-x-scroll rounded-2xl md:ml-[-115px] md:mt-[50px] relative gap-x-2"
             >
                 <!-- Contenido dinámico con JS -->
             </div>
@@ -138,18 +138,18 @@ const pokemon = await fetchingCharater();
 
         if (PokemonList.length === 0) {
             contenedor.innerHTML = `
-            <p class='text-black text-2xl text-center mt-10 font-mono max-md:ml-10'>Añade tu personaje al carrito</p>
+            <p class='text-black text-2xl text-center mt-10 font-mono md:ml-10'>Añade tu personaje al carrito</p>
             <img class='carritoSvg w-24 mx-auto mt-4 relative right-2' src='/carrito.svg'/>
         `;
         } else {
             PokemonList.forEach((poke: any) => {
                 const nuevo = document.createElement("div");
                 nuevo.className =
-                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] max-md:ml-[-3px] max-md:w-[270px] max-md:h-[60vh]";
+                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[520px] md:h-[60vh] md:gap-x-5";
                 nuevo.dataset.id = poke.id;
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 max-md:ml-[210px] cursor-pointer"/>
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[470px] cursor-pointer"/>
                 <img src="${poke.image}" alt="${poke.name}" class="w-full h-[200px] object-contain rounded mt-5" />
                 <p class="text-center font-semibold mt-2">${poke.name}</p>
             `;
@@ -172,11 +172,11 @@ const pokemon = await fetchingCharater();
             if (!contenedor.querySelector(`[data-id="${id}"]`)) {
                 const nuevo = document.createElement("div");
                 nuevo.className =
-                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] max-md:ml-[-3px] max-md:w-[270px] max-md:h-[60vh]";
+                    "border p-2 mb-2 mt-1 rounded bg-white md:ml-[-3px] md:w-[520px] md:h-[60vh] md:gap-x-5";
                 nuevo.dataset.id = id;
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 max-md:ml-[210px] cursor-pointer"/>
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[470px]cursor-pointer"/>
                 <img src="${image}" alt="${name}" class="w-full h-[200px] object-contain rounded mt-5" />
                 <p class="text-center font-semibold mt-2">${name}</p>
             `;
@@ -215,7 +215,7 @@ const pokemon = await fetchingCharater();
 
             if (contenedor.children.length === 0) {
                 contenedor.innerHTML = `
-                <p class='text-black text-2xl text-center mt-10 font-mono max-md:ml-10'>Añade tu personaje al carrito</p>
+                <p class='text-black text-2xl text-center mt-10 font-mono md:ml-10'>Añade tu personaje al carrito</p>
                 <img class='carritoSvg w-24 mx-auto mt-4 relativo right-2' src='/carrito.svg'/>
             `;
             }
