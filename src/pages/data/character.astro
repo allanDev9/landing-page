@@ -18,18 +18,18 @@ const characters = await fetchingCharater();
 
 <section class="grid lg:grid-cols-2 gap-4 md:grid-cols-1">
     <div
-        class="border border-black w-full h-[550px] max-md:w-[95%] max-md:h-[700px] overflow-y-scroll overflow-x-hidden mb-10 bg-black mt-10 rounded-2xl shadow-2xl"
+        class="border border-black w-full h-[550px] md:h-[700px] overflow-y-scroll overflow-x-hidden mb-10 bg-black mt-10 rounded-2xl shadow-2xl"
     >
         <div
             title="Api Rick and Morty"
-            class="list-none mt-10 pb-10 mr-70 grid grid-cols-1 gap-x-90 gap-y-5 max-md:flex max-md:flex-col p-5"
+            class="list-none mt-10 pb-10 mr-70 grid grid-cols-1 gap-x-90 gap-y-5 md:flex md:flex-col p-5"
         >
             {
                 characters.map((char: Character) => (
                     <li
                         id="list-characters"
                         data-key={char.id}
-                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 relative lg:left-20 md:left-32"
+                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 relative md:left-30"
                     >
                         <div onclick="dialog.showModal()">
                             <img src={char.image} alt={char.name} />
