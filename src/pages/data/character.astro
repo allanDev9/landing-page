@@ -55,7 +55,7 @@ const characters = await fetchingCharater();
     >
         <div
             id="contenedor-seleccion"
-            class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap md:w-[550px] md:h-[50vh] md:overflow-x-scroll rounded-2xl md:ml-[-115px] md:mt-[50px] relative gap-x-2"
+            class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap md:w-[550px] md:h-[40vh] md:overflow-x-scroll rounded-2xl md:ml-[-115px] md:mt-[50px] relative gap-x-2"
         >
         </div>
         <div class="mt-5 md:relative md:right-17">
@@ -124,11 +124,11 @@ const characters = await fetchingCharater();
             characterList.forEach((char: CharacterData) => {
                 const nuevo = document.createElement("div");
                 nuevo.className =
-                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[390px] md:h-[60vh] md:gap-x-5";
+                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[490px] md:h-[40vh] md:gap-x-5";
                 nuevo.dataset.id = char.id.toString();
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[330px] cursor-pointer"/>
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[430px] cursor-pointer"/>
                 <img src="${char.image}" alt="${char.name}" class='w-full rounded'/>
                 <p class='text-center font-semibold mt-2'>${char.name}</p>
                 `;
@@ -154,11 +154,11 @@ const characters = await fetchingCharater();
 
             const nuevo = document.createElement("div");
             nuevo.className =
-                "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[390px] md:h-[60vh] md:gap-x-5";
+                "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[490px] md:h-[40vh] md:gap-x-5";
             nuevo.dataset.id = id;
 
             nuevo.innerHTML = `
-            <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[330px] cursor-pointer"/>
+            <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[430px] cursor-pointer"/>
             <img src="${image}" alt="${name}" class="w-full rounded" />
             <p class="text-center font-semibold mt-2">${name}</p>
             `;

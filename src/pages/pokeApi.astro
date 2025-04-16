@@ -91,11 +91,11 @@ const pokemon = await fetchingCharater();
         >
             <div
                 id="contenedor-seleccion"
-                class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap md:w-[550px] md:h-[50vh] md:overflow-x-scroll rounded-2xl md:ml-[-115px] md:mt-[50px] relative gap-x-2"
+                class="contenedor-seleccion w-[390px] h-[500px] bg-blue-200 border-2 border-dotted p-4 overflow-x-scroll overflow-y-hidden flex flex-col flex-wrap md:w-[550px] md:h-[40vh] md:overflow-x-scroll rounded-2xl md:ml-[-115px] md:mt-[50px] relative gap-x-2"
             >
                 <!-- Contenido dinámico con JS -->
             </div>
-            <div class="mt-5 max-md:mt-10 max-md:ml-[-75px] text-start">
+            <div class="mt-5 max-md:mt-10 md:ml-[-45px] text-start">
                 <span
                     id="totalCharacters"
                     class="text-xl font-bold font-mono text-yellow-300"
@@ -145,12 +145,12 @@ const pokemon = await fetchingCharater();
             PokemonList.forEach((poke: any) => {
                 const nuevo = document.createElement("div");
                 nuevo.className =
-                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[520px] md:h-[60vh] md:gap-x-5";
+                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[490px] md:h-[40vh] md:gap-x-5";
                 nuevo.dataset.id = poke.id;
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[470px] cursor-pointer"/>
-                <img src="${poke.image}" alt="${poke.name}" class="w-full h-[200px] object-contain rounded mt-5" />
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[430px] cursor-pointer"/>
+                <img src="${poke.image}" alt="${poke.name}" class="w-full h-[200px] rounded mt-5" />
                 <p class="text-center font-semibold mt-2">${poke.name}</p>
             `;
                 contenedor.appendChild(nuevo);
@@ -172,12 +172,12 @@ const pokemon = await fetchingCharater();
             if (!contenedor.querySelector(`[data-id="${id}"]`)) {
                 const nuevo = document.createElement("div");
                 nuevo.className =
-                    "border p-2 mb-2 mt-1 rounded bg-white md:ml-[-3px] md:w-[520px] md:h-[60vh] md:gap-x-5";
+                    "border p-2 mb-2 mt-1 rounded bg-white h-[800px] md:ml-[-3px] md:w-[490px] md:h-[40vh] md:gap-x-5";
                 nuevo.dataset.id = id;
 
                 nuevo.innerHTML = `
-                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[470px]cursor-pointer"/>
-                <img src="${image}" alt="${name}" class="w-full h-[200px] object-contain rounded mt-5" />
+                <img src='/delete.svg' class="btn-eliminar bg-red-400 text-white rounded-md p-1 mb-2 ml-75 md:ml-[430px] cursor-pointer"/>
+                <img src="${image}" alt="${name}" class="w-full h-[200px] rounded mt-5" />
                 <p class="text-center font-semibold mt-2">${name}</p>
             `;
                 contenedor.appendChild(nuevo);
