@@ -1,0 +1,72 @@
+---
+
+---
+
+<footer
+    class="flex border font-mono border-none relative top-1 bg-gradient-to-r from-blue-300 via-blue-500 to-gray-500 md:top-370 lg:top-200 md:h-[10vh]"
+>
+    <section
+        class="grid grid-cols-3 gap-x-70 mx-auto text-white list-none md:gap-x-30 md:mt-10"
+    >
+        <div>
+            <p class="text-yellow-300 font-bold">Creditos</p>
+            <p>Hecho por: <span class="animacion-text">Allan Peña</span></p>
+        </div>
+        <div>
+            <p class="text-yellow-300 font-bold">Mi Repositorio</p>
+            <img
+                class="w-10 ml-10 mt-5 hover:bg-white transition duration-200 ease-in-out rounded-full"
+                src="/github.svg"
+                alt="iamgen de github.svg"
+            />
+        </div>
+        <div>
+            <p
+                class="text-yellow-300 font-bold hover:ml-1 transition duration-2000 ease-in-out"
+            >
+                Clean Architecture
+            </p>
+            <li class="hover:ml-3 transition duration-2000 ease-in-out">
+                Manejo de apis
+            </li>
+            <li class="hover:ml-3 transition duration-2000 ease-in-out">
+                Uso de grid
+            </li>
+            <li class="hover:ml-3 transition duration-2000 ease-in-out">
+                Manejo de rutas
+            </li>
+            <li class="hover:ml-3 transition duration-2000 ease-in-out">
+                Ajuste responsivo
+            </li>
+        </div>
+    </section>
+</footer>
+<style>
+    footer {
+        box-shadow: 25px 25px 10px rgba(0, 0, 0, 0.333);
+        margin-top: -5%;
+        height: 35vh;
+    }
+    @media (max-width: 400px) {
+        footer {
+            height: 30vh;
+        }
+    }
+    .animacion-text {
+        color: black;
+        font-weight: bold;
+        animation: parpadeo 3s infinite; /* Cambia el tiempo para ajustar la velocidad */
+    }
+
+    @keyframes parpadeo {
+        0%,
+        100% {
+            color: black;
+            box-shadow: 20px 20px 5px rgba(0, 0, 0, 0.333);
+        }
+        50% {
+            color: transparent;
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.333);
+        }
+    }
+</style>

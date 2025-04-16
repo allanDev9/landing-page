@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import Navbar from "./Navbar.astro";
+import Footer from "./Footer.astro";
 ---
 
 <!doctype html>
@@ -12,9 +13,10 @@ import Navbar from "./Navbar.astro";
 	</head>
 	<body>
 		<Navbar />
-		<div class="text-black ml-50 mr-50">
+		<div class="text-black ml-50 mr-50 md:h-[100px] grow">
 			<slot />
 		</div>
+		<Footer />
 	</body>
 </html>
 
@@ -23,13 +25,14 @@ import Navbar from "./Navbar.astro";
 	body {
 		margin: 0;
 		width: 100%;
-		height: 140vh;
+		height: 150vh;
 		background-color: rgba(67, 67, 67, 0.681);
 	}
-	@media screen and (max-width: 400px) {
+	@media (max-width: 400px) {
+		html,
 		body {
-			width: 980px;
-			height: 100%;
+			width: 100%;
+			height: 10px;
 		}
 	}
 </style>

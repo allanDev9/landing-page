@@ -29,7 +29,7 @@ const characters = await fetchingCharater();
                     <li
                         id="list-characters"
                         data-key={char.id}
-                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 relative left-20"
+                        class="w-[300px] border border-black p-5 rounded-2xl bg-gray-300 font-bold hover:scale-105 transition duration-300 relative lg:left-20 md:left-32"
                     >
                         <div onclick="dialog.showModal()">
                             <img src={char.image} alt={char.name} />
@@ -215,6 +215,16 @@ const characters = await fetchingCharater();
     });
 </script>
 <style>
+    body {
+        min-height: 190vh;
+        margin: 0;
+    }
+    @media (max-width: 1900px) {
+        body {
+            min-height: 150vh;
+            margin: 0;
+        }
+    }
     .contenedor-seleccion {
         box-shadow: 25px 25px 10px rgba(0, 0, 0, 0.333);
         transition: all 0.5s ease-in-out;
